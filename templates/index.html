@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para Ti ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="hearts" aria-hidden="true">
+      <span>❤</span><span>❤</span><span>❤</span><span>❤</span><span>❤</span>
+    </div>
+
+    <main class="card">
+      <header class="hero">
+        <p class="tag">Con amor</p>
+        <h1>{{ data.title }}</h1>
+        <p class="subtitle">{{ data.subtitle }}</p>
+      </header>
+
+      <section class="profiles" aria-label="Información de la pareja">
+        <article class="profile">
+          <h2>{{ data.you.name }}</h2>
+          <p>{{ data.you.about }}</p>
+          <ul>
+            {% for item in data.you.likes %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+
+        <article class="profile">
+          <h2>{{ data.partner.name }}</h2>
+          <p>{{ data.partner.about }}</p>
+          <ul>
+            {% for item in data.partner.likes %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+      </section>
+
+      <section class="timeline" aria-label="Momentos importantes">
+        <h3>Nuestros Momentos</h3>
+        <div class="timeline-list">
+          {% for item in data.timeline %}
+          <article class="timeline-item">
+            <p class="date">{{ item.date }}</p>
+            <p>{{ item.event }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <p class="message">{{ data.message }}</p>
+    </main>
+  </body>
+</html>
